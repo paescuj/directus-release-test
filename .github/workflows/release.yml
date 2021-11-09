@@ -16,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: 'test'
           fetch-depth: '0'
       - name: Initialize git config
         run: |
@@ -24,9 +23,7 @@ jobs:
           git config user.email github-actions@github.com
       - name: Setup branch
         run: |
-          git branch -a
-          git show-ref --heads nightly
-          if git show-ref --quiet --verify --heads nightly; then
+          if git show-ref --quiet --verify refs/remotes/origin/nightly; then
             git checkout nightly
             git merge main
           else
