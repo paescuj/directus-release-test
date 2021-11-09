@@ -28,6 +28,10 @@ jobs:
             git checkout -b nightly
           fi
           git status
+      - name: Test commit
+        run: |
+          echo test >> changelog.md
+          git commit -m "test" changelog.md
       - name: Push branch
         run: git push --set-upstream origin nightly
 
