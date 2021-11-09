@@ -15,14 +15,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Nightly branch
+      - name: Initialize git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+      - name: Setup branch
         run: |
           if git show-ref --quiet --verify --heads nightly; then
+            git checkout nightly
             git merge main
           else
             git checkout -b nightly
           fi
           git status
+      - name: Push branch
+        run: git push
 
   #create-release:
   #  name: Create Release
