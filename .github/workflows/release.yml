@@ -19,8 +19,8 @@ jobs:
           fetch-depth: '0'
       - name: Initialize git config
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email noreply@github.com
+          git config user.name github-actions
+          git config user.email github-actions@github.com
       - name: Setup branch
         run: |
           if git show-ref --quiet --verify --heads nightly; then
