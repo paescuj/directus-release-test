@@ -3287,3 +3287,4 @@ We'll be upgrading the documentation and providing new boilerplates for Vue 3 ba
   favor of GitHub Sponsors ([@benhaynes](https://github.com/benhaynes))
 test
 test
+test
