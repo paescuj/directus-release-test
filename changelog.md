@@ -3286,3 +3286,4 @@ We'll be upgrading the documentation and providing new boilerplates for Vue 3 ba
 - [`56ad3c0`](https://github.com/directus/directus/commit/56ad3c04dd0b350905aa23f2483045219a1a6502) remove Patreon in
   favor of GitHub Sponsors ([@benhaynes](https://github.com/benhaynes))
 test
+test
