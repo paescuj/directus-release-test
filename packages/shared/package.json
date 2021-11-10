@@ -1,6 +1,6 @@
 {
 	"name": "@directus/shared",
-	"version": "9.0.0-nightly.20201110",
+	"version": "9.0.0-nightly.20201111",
 	"description": "Code shared between all directus packages.",
 	"exports": {
 		"./composables": {
