@@ -32,6 +32,7 @@ jobs:
             git checkout -b nightly
           fi
 
+      # Generate & update
       - name: Update changelog.md
         run: |
           echo test >> changelog.md
