@@ -49,7 +49,7 @@ jobs:
 
       - name: Bump version
         run: |
-          current_version=$(npx lerna list --json | jq --raw '.[] | select(.name == "directus") | .version')
+          current_version=$(npx lerna list --json | jq --raw-output '.[] | select(.name == "directus") | .version')
           date=$(date '+%Y%m%d')
           new_version="${current_version}-nightly.${date}"
           npx lerna version --force-publish --yes "${new_version}"
