@@ -17,10 +17,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: '0'
+
       - name: Configure Git user
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+
       - name: Setup branch
         run: |
           if git ls-remote --exit-code --quiet --heads origin nightly > /dev/null; then
@@ -29,12 +31,28 @@ jobs:
           else
             git checkout -b nightly
           fi
-      - name: Test commit
+
+      - name: Update changelog.md
         run: |
           echo test >> changelog.md
-          git commit -m "test" changelog.md
-      - name: Push branch
-        run: git push --set-upstream origin nightly
+          git commit -m "Update changelog" changelog.md
+          git push origin nightly
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump version
+        run: |
+          current_version=$(npx lerna list --json | jq --raw '.[] | select(.name == "directus") | .version')
+          date=$(date '+%Y%m%d')
+          new_version="${current_version}-nightly.${date}"
+          npx lerna version --force-publish --yes "${new_version}"
 
   #create-release:
   #  name: Create Release
