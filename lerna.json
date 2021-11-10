@@ -5,7 +5,7 @@
 		"docs",
 		"api"
 	],
-	"version": "9.0.0-nightly.20201111-nightly.20211110",
+	"version": "9.0.0-nightly.20211110",
 	"command": {
 		"bootstrap": {
 			"npmClientArgs": [
