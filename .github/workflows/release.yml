@@ -17,19 +17,18 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: '0'
-      - name: Initialize git config
+      - name: Configure Git user
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
       - name: Setup branch
         run: |
-          if git show-ref --quiet --verify refs/remotes/origin/nightly; then
+          if git ls-remote --exit-code --quiet --heads origin nightly > /dev/null; then
             git checkout nightly
             git merge main
           else
             git checkout -b nightly
           fi
-          git status
       - name: Test commit
         run: |
           echo test >> changelog.md
