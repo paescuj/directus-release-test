@@ -24,14 +24,11 @@ jobs:
           node-version: '16'
           cache: npm
 
-      - name: Install lerna
-        run: npm install lerna
-
       - name: Get current base version
         id: get-current-base-version
         run: |
-          full_version=$(npx lerna list --json | jq --raw-output '.[] | select(.name == "directus") | .version')
-          base_version=$([[ $current_version =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] && echo "${BASH_REMATCH[0]}")
+          full_version=$(npx --yes lerna list --json | jq --raw-output '.[] | select(.name == "directus") | .version')
+          base_version=$([[ $full_version =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] && echo "${BASH_REMATCH[0]}")
           echo "::set-output version=${base_version}"
 
       - name: Configure Git user
